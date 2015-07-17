@@ -39,7 +39,7 @@ $project = getProjectById($_GET['id']);
     git clone https://projects.cecs.pdx.edu/git/exampleproject
     </code></pre>
 
-  <a class="button button-primary" href="delete.php">Delete this project</a>
+  <a class="button button-primary" href="delete.php?id=<?= $project['id'] ?>">Delete this project</a>
 
   </section>
 
