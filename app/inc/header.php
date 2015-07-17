@@ -17,6 +17,6 @@ require_once __DIR__ . '/../../config.php';
     </header>
 
     <nav class="row">
-      <a class="button" href="#">List Projects</a>
-      <a class="button button-primary" href="#">New Project</a>
+      <a class="button" href="index.php">List Projects</a>
+      <a class="button button-primary" href="new.php">New Project</a>
     </nav>

@@ -20,7 +20,7 @@ require_once __DIR__ . '/inc/header.php';
             <td>My project is cool</td>
             <td>2015-12-31</td>
             <td>git</td>
-            <td><a href="#">Details</a></td>
+            <td><a href="detail.php">Details</a></td>
           </tr>
         </tbody>
       </table>
