@@ -27,7 +27,7 @@ var_dump($allProjects);
             <td><?= $project['description'] ?></td>
             <td><?= $project['expires'] ?></td>
             <td><?= $project['repository_type'] ?></td>
-            <td><a href="detail.php">Details</a></td>
+            <td><a href="detail.php?id=<?= $project['id'] ?>">Details</a></td>
           </tr>
         <?php
         } // End foreach allProjects

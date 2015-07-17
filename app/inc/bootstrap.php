@@ -5,12 +5,18 @@ $connstring = "dbname=" . $config['db']['name']
 . " user=" . $config['db']['user']
 . " password=" . $config['db']['password'];
 
+//$GLOBALS['BASE_URL'] = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['CONTEXT_PREFIX'];
+if(!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') {
+	$protocol = 'https://';
+} else $protocol = 'http://';
+$GLOBALS['BASE_URL'] = $protocol . $_SERVER['HTTP_HOST'];
+
 // The persistent database connection
 $GLOBALS['DB'] = pg_pconnect($connstring);
 if(!$DB) die("Error: Can't connect to the database.");
 
 function getProjects() {
-	$query = "SELECT projects.name, description, expires, repository_types.name as repository_type
+	$query = "SELECT projects.id, projects.name, description, expires, repository_types.name as repository_type
               FROM projects
               JOIN repository_types
               ON (projects.repository_type = repository_types.id)";
@@ -19,7 +25,11 @@ function getProjects() {
 }
 
 function getProjectById($id) {
-	$query = "SELECT * FROM projects WHERE id = $1";
+	$query = "SELECT projects.id, projects.name, description, expires, repository_types.name as repository_type
+              FROM projects
+              JOIN repository_types
+              ON (projects.repository_type = repository_types.id)
+              WHERE projects.id = $1";
 	$result = pg_query_params($GLOBALS['DB'], $query, array($id));
 	return pg_fetch_all($result);
 }

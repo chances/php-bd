@@ -1,10 +1,18 @@
 <?php
 require_once __DIR__ . '/inc/header.php';
+
+if(!isset($_GET['id'])) {
+  header('Location: ' . $GLOBALS['BASE_URL']);
+  die(); // not all clients respect location headers
+}
+
+$project = getProjectById($_GET['id']);
+
 ?>
 
   <section>
 
-    <h2>Project Details: Example Project</h2>
+    <h2>Project Details: <?= $project['name'] ?></h2>
 
     <h3>Redmine URL</h3>
 
@@ -12,6 +20,7 @@ require_once __DIR__ . '/inc/header.php';
 
     <h3>Repository Access</h3>
     <p>Project members with either the Manager or Developer role can check out and commit to the repository using the following method(s).</p>
+
     <h4>HTTPS</h4>
     <p>You will be asked for your MCECS username and password.</p>
     <pre><code>
