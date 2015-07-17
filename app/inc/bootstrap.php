@@ -31,6 +31,23 @@ function getProjectById($id) {
               ON (projects.repository_type = repository_types.id)
               WHERE projects.id = $1";
 	$result = pg_query_params($GLOBALS['DB'], $query, array($id));
+	return pg_fetch_array($result);
+}
+
+function getRepositoryTypes() {
+	$query = "SELECT * from repository_types";
+	$result = pg_query($GLOBALS['DB'], $query);
+	return pg_fetch_all($result);
+}
+
+function newProject($name, $description, $expires, $repository_type = NULL) {
+	$query = "INSERT INTO projects (name, description, expires, repository_type) VALUES ( $1, $2, $3, $4)";
+	$result = pg_query_params($GLOBALS['DB'], $query, array(
+		$name,
+		$description,
+		$expires,
+		$repository_type
+	));
 	return pg_fetch_all($result);
 }
 

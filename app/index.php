@@ -3,7 +3,6 @@
 require_once __DIR__ . '/inc/header.php';
 
 $allProjects = getProjects();
-var_dump($allProjects);
 
 ?>
 
