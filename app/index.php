@@ -1,6 +1,10 @@
 <!doctype html>
 <?php
 require_once __DIR__ . '/inc/header.php';
+
+$allProjects = getProjects();
+var_dump($allProjects);
+
 ?>
 
     <section>
@@ -15,13 +19,19 @@ require_once __DIR__ . '/inc/header.php';
           </tr>
         </thead>
         <tbody>
+        <?php
+        foreach ($allProjects as $project) {
+        ?>
           <tr>
-            <td>Example Project</td>
-            <td>My project is cool</td>
-            <td>2015-12-31</td>
-            <td>git</td>
+            <td><?= $project['name'] ?></td>
+            <td><?= $project['description'] ?></td>
+            <td><?= $project['expires'] ?></td>
+            <td><?= $project['repository_type'] ?></td>
             <td><a href="detail.php">Details</a></td>
           </tr>
+        <?php
+        } // End foreach allProjects
+        ?>
         </tbody>
       </table>
     </section>
