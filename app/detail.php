@@ -30,7 +30,7 @@ require_once __DIR__ . '/inc/header.php';
     git clone https://projects.cecs.pdx.edu/git/exampleproject
     </code></pre>
 
-  <a class="button button-primary" href="#">Delete this project</a>
+  <a class="button button-primary" href="delete.php">Delete this project</a>
 
   </section>
 
