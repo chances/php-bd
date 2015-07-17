@@ -19,17 +19,19 @@ $allProjects = getProjects();
         </thead>
         <tbody>
         <?php
-        foreach ($allProjects as $project) {
-        ?>
-          <tr>
-            <td><?= $project['name'] ?></td>
-            <td><?= $project['description'] ?></td>
-            <td><?= $project['expires'] ?></td>
-            <td><?= $project['repository_type'] ?></td>
-            <td><a href="detail.php?id=<?= $project['id'] ?>">Details</a></td>
-          </tr>
-        <?php
-        } // End foreach allProjects
+        if(!empty($allProjects)) {
+          foreach ($allProjects as $project) {
+            ?>
+            <tr>
+              <td><?= $project['name'] ?></td>
+              <td><?= $project['description'] ?></td>
+              <td><?= $project['expires'] ?></td>
+              <td><?= $project['repository_type'] ?></td>
+              <td><a href="detail.php?id=<?= $project['id'] ?>">Details</a></td>
+            </tr>
+            <?php
+          } // End foreach allProjects
+        } // End if allProjects
         ?>
         </tbody>
       </table>

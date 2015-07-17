@@ -1,3 +1,10 @@
+isset vs empty 
+===
+`isset` checks whether an existing variable is set and is not null - this means
+it will return true for an empty string
+variable must exist first!
+`empty` checks whether the evariable is an empty string, false, an empty array, null, "0", 0, or does not exist, so it will return true for an empty string
+
 Base URLs
 ===
 
