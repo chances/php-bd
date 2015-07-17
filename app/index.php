@@ -1,27 +1,7 @@
 <!doctype html>
 <?php
-require_once '../config.php';
-
+require_once __DIR__ . '/inc/header.php';
 ?>
-
-<html>
-<head>
-  <meta charset="utf-8">
-  <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
-  <title>Project List</title>
-</head>
-<body>
-
-  <div class="container">
-
-    <header>
-      <h1 class="section-heading">Project Manager</h1>
-    </header>
-
-    <nav class="row">
-      <a class="button" href="#">List Projects</a>
-      <a class="button button-primary" href="#">New Project</a>
-    </nav>
 
     <section>
       <table class="u-full-width">
@@ -46,12 +26,6 @@ require_once '../config.php';
       </table>
     </section>
 
-    <footer>
-      <a href="#">Log out</a>
-    </footer>
-
-  </div>
-
-  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
-</body>
-</html>
+<?php
+require_once __DIR__ . '/inc/footer.php';
+?>
