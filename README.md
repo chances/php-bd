@@ -1,3 +1,26 @@
+Superglobals
+===
+Predefined variables that are available in all scopes throughout a script. If
+something is not in a superglobal and you want to make it global, you need to do
+`global $variable`
+
+See superglobal list
+[here](http://php.net/manual/en/language.variables.superglobals.php). 
+
+`$GLOBALS`: all variables in global scope. 
+
+`$_REQUEST` is a combo of `$_GET`, `$_POST`, `$_COOKIE`
+`$_ENV` contains envrionment variables
+`$_SERVER` contains info about the server
+`$_COOKIE` and `$_SERVER` store info about the current user and session
+
+Regular constants 
+===
+`define('CONST_NAME, 'the value goes here')`
+Magic constants
+===
+[look at them](http://php.net/manual/en/language.constants.predefined.php)
+
 Cookies and sessions
 ===
 
