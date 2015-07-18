@@ -1,9 +1,93 @@
+Cookies and sessions
+===
+
+HTML is stateless (mostly! we do have html5 storage now...). Once the page has
+been delivered to your browser, by default the server forgets all about you.
+
+Netscape came up with cookies to remedy this problem. Cookies are stored in the
+browser. Sessions solve the same problem, but their data is stored on the
+server.
+
+Cookies:
+- are stored on the client - if you have a cluster of servers, this may be
+  better (the client doesn't have to talk to the same server every time)
+- have a finite lifespan
+- may have a limited size
+- all data must be sent with each request - the client will automatically send
+  all the cookie info related to the server with every request to the server, so
+  you don't want to store too much. In php this data goes to the superglobal
+  `$_COOKIE` automatically.
+- Only choice if you want site to remember the user tomorrow
+- If you have sensitive information, use a cookie to send an id, an store the
+  info in the database based on that id (not on the client)
+- Dangerous? Not really. A site can only read data that it has stored. This
+  doesn't stop the client from doing something nefarious though.
+
+A cookie is set like so:
+```php
+    // languageprefs.php
+
+    <?php
+      if (!isset($_COOKIE['Language'])) {
+        setcookie("Language", $_POST['preferred-language'], time() + 31536000);
+      }
+    ?>
+
+    <form method="post" aciton="languageprefs.php">
+      <select name="preferred-language">
+        <option value="en">English</option>
+        <option value="es">Español</option>
+      </select>
+    </form>
+```
+
+After this, the "Language" cookie would be sent with every request to this web
+site for a year, and you could find it in the `$_COOKIE` superglobal.
+
+There are more parameters that let you specify that the cookie can only be sent
+over HTTPS. That said, don't store sensitive information in cookies.
+
+Sessions:
+- Combo of a server side cookie and a client side cookie. Client side cookie
+  contains only a reference to the correct data on the server. The browser sends
+  only this reference code. The server side cookie is stored in `$_SESSION`
+  automatically.
+- stored on the server: better for safe information:
+- you don't need to send much information with each request (just an ID)
+- unlimited size
+- cleaned up when the visitor closes their browser
+
+Either way, both are for 'disposable' information. Longer term data should be
+stored in the dataabase. If you store personal information in cookies, you
+should encrypt it.
+
+To use a session:
+
+```php
+session_start();
+```
+this tells the server sessions are going to be used. When this is called, PHP
+checks whether the client has sent a session cookie. If it did, it will use that
+identity to load the session data from the right session file. If not, PHP will
+create a session file on the server and send an ID back to the visitor to store
+in a new cookie.
+
+You must call `session_start()` before accessing any session variables. It needs
+to be at the very top of the file.
+
+Once this is done, you can set and get any session info for the current user
+using the `$_SESSION` superglobal.
+
+You can end a session with `session_destroy()`, but the client side session
+cookie will only persist until the client quits their browser.
+
 isset vs empty 
 ===
 `isset` checks whether an existing variable is set and is not null - this means
-it will return true for an empty string
-variable must exist first!
-`empty` checks whether the evariable is an empty string, false, an empty array, null, "0", 0, or does not exist, so it will return true for an empty string
+it will return true for an empty string variable must exist first!  
+
+`empty` checks whether the evariable is an empty string, false, an empty array,
+null, "0", 0, or does not exist, so it will return true for an empty string
 
 Base URLs
 ===
@@ -261,4 +345,3 @@ if(!empty($_POST['id'])) {
   die();
 }
 ```
-
