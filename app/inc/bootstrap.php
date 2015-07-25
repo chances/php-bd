@@ -21,7 +21,14 @@ function getProjects() {
               JOIN repository_types
               ON (projects.repository_type = repository_types.id)";
 	$result = pg_query($GLOBALS['DB'], $query);
-	return pg_fetch_all($result);
+	if ($result == false) {
+		throw new Exception("Could not retrieve projects.");
+	}
+	$result = pg_fetch_all($result);
+	if (count($result) == 0) {
+		throw new Exception("There are no projects.", 1);
+	}
+	return $result;
 }
 
 function getProjectById($id) {
