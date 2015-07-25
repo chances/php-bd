@@ -6,8 +6,12 @@ if(!empty($_POST)) {
   if(empty($_POST['name']) || empty($_POST['description']) || empty($_POST['expires'])) {
     $message = "Please fill in a name, a description, and an expiration date.";
   } else {
-    newProject($_POST['name'], $_POST['description'], $_POST['expires'], $_POST['repository_type']);
-    $message = "Project created.";
+    try {
+      newProject($_POST['name'], $_POST['description'], $_POST['expires'], $_POST['repository_type']);
+      $message = "Project created.";
+    } catch (Exception $ex) {
+      $message = $ex->getMessage();
+    }
   }
 }
 ?>

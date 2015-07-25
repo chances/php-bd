@@ -48,6 +48,11 @@ function getRepositoryTypes() {
 }
 
 function newProject($name, $description, $expires, $repository_type = NULL) {
+	preg_match('/^\d{2}\/\d{2}\/\d{4}$', $expires, $matches);
+	if (count($matches) == 0) {
+		throw new Exception("Please format date as mm/dd/yyyy");
+	}
+
 	$query = "INSERT INTO projects (name, description, expires, repository_type) VALUES ( $1, $2, $3, $4)";
 	$result = pg_query_params($GLOBALS['DB'], $query, array(
 		$name,
