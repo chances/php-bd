@@ -3,6 +3,7 @@ require_once __DIR__ . '/../../config.php';
 require_once __DIR__ . '/bootstrap.php';
 ?>
 
+<!DOCTYPE HTML>
 <html>
 <head>
   <meta charset="utf-8">
